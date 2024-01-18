@@ -89,13 +89,4 @@ import {ProgressBarModule} from 'primeng/progressbar';
   ]
 })
 export class SharedModule {
-
-  static forRoot() {
-    return {
-      ngModule: SharedModule,
-      providers: [
-        AppService
-      ],
-    };
- }
  }
