@@ -1,27 +1,68 @@
+<p-toast></p-toast>
 
 <div class="container">
-    <form >
-        <div class="card">
-            <h5>Product Details</h5>
-            <div class="p-fluid">
-              <div class="p-field">
-                <label for="firstname1">Product Name</label>
-                <input id="firstname1" type="text" pInputText />
-              </div>
-              <div class="p-field">
-                <label for="lastname1">Product Category</label>
-                <input id="lastname1" type="text" pInputText />
-              </div>
-              <div class="p-field">
-                <label for="lastname1">Similar Product</label>
-                <input id="lastname1" type="text" pInputText />
-              </div>
+
+  <form [formGroup]="productForm">
+    <div class="card">
+      <h2>Product Details</h2>
+      <div *ngIf="loading">
+        <div class="border-round border-1 surface-border p-4 surface-card">
+          <div class="flex mb-3">
+            <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+            <div>
+              <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+              <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+              <p-skeleton height=".5rem"></p-skeleton>
             </div>
           </div>
-          
-    </form>
-   
+          <p-skeleton width="100%" height="150px"></p-skeleton>
+          <div class="flex justify-content-between mt-3">
+            <p-skeleton width="4rem" height="2rem"></p-skeleton>
+            <p-skeleton width="4rem" height="2rem"></p-skeleton>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="!loading">
+
+        <div class="p-fluid">
+          <h3>{{this.product.title}}</h3>
+          <img [src]=" product?.images[0]" [alt]="product?.title" width="400" class="shadow " />
+
+          <div class="p-field">
+            <label for="firstname1">Product Name</label>
+            <input id="firstname1" formControlName="title" type="text" pInputText />
+          </div><br>
+          <div class="p-field">
+            <label for="lastname1">Product Category</label>
+            <input id="lastname1" formControlName="description" type="text" pInputText />
+          </div><br>
+          <div class="p-field">
+            <label for="lastname1">Product price</label>
+            <input id="lastname1" formControlName="price" type="text" pInputText />
+          </div><br>
+          <div class="p-field">
+            <label for="lastname1">Product Categoty</label>
+            <p-dropdown [options]="category" formControlName="category" optionLabel="" [showClear]="true"
+              placeholder="Select a City"></p-dropdown>
+
+          </div><br>
+
+          <div class="card">
+            <span class="p-fluid">
+              <label for="lastname1">Similar Product</label>
+
+              <p-autoComplete formControlName="similarProduct" [suggestions]="filteredCountries"
+                (completeMethod)="filterProduct($event)" field="title" [multiple]="true">
+              </p-autoComplete>
+            </span>
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+    <button pButton pRipple label="Back" class="p-button-Primary btn btnt" (click)="back()"></button>
+
+    <button pButton pRipple label="Submit" class="p-button-success btnt" (click)="updateProduct()"></button>
+
+  </form>
 </div>
-
-
-  

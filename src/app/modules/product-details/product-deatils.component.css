@@ -9,3 +9,9 @@ form{
 	border-radius: 10px;
 	background-color: #e9e9e9;
 }
+.shadow{
+	padding: 5px;
+}
+.btnt{
+	margin: 10px;
+}

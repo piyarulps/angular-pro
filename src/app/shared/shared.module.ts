@@ -18,7 +18,12 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import {SkeletonModule} from 'primeng/skeleton';
+import {ProgressBarModule} from 'primeng/progressbar';
+
 @NgModule({
+  
   declarations: [],
   imports: [
     CommonModule,
@@ -28,6 +33,7 @@ import { DropdownModule } from 'primeng/dropdown';
     TableModule,
     ButtonModule,
     RatingModule,
+    AutoCompleteModule, 
     TagModule,
     InputNumberModule,
     InputTextModule,
@@ -46,6 +52,8 @@ import { DropdownModule } from 'primeng/dropdown';
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule,
+    SkeletonModule,
+    ProgressBarModule
   ],
   providers:[AppService],
   exports:[   FormsModule,
@@ -75,6 +83,19 @@ import { DropdownModule } from 'primeng/dropdown';
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule,
+    AutoCompleteModule,
+    SkeletonModule,
+    ProgressBarModule
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+
+  static forRoot() {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        AppService
+      ],
+    };
+ }
+ }
